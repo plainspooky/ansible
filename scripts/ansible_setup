@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+echo "Creating inventory at '~/hosts'..."
+
+cat <<EOT > ~/hosts
+[localhost]
+127.0.0.1
+EOT
+

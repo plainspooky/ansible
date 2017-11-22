@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+PYTHON27=$( which python2.7 )
+VIRTUALENV="./ansible_env"
+
+virtualenv --python ${PYTHON27} ${VIRTUALENV} &&\
+source ${VIRTUALENV}/bin/activate &&\
+pip install ansible &&\
+deactivate
+
