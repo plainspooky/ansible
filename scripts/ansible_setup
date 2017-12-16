@@ -7,3 +7,6 @@ cat <<EOT > ~/hosts
 127.0.0.1
 EOT
 
+echo "Configuring Vim..."
+cp -f /vagrant/vimrc ~/.vimrc
+

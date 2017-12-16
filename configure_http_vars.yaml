@@ -1,0 +1,41 @@
+#
+# Configuração do Nginx nos nós
+# 
+- hosts: localhost
+  connection: local
+  become: yes
+  become_user: root
+  vars:
+      - orig: /vagrant
+      - dest: /var/www/html 
+  tasks:
+      - name: Instala o Nginx
+        apt:
+            name: nginx
+            state: installed
+            update_cache: true
+      - name: Interrompe o Nginx
+        service:
+            name: nginx
+            state: stopped
+      - name: Monta a página principal
+        template:
+            src: '{{ orig }}/index.html'
+            dest: '{{ dest }}/index.html'
+            owner: root
+            group: root
+            mode: 0644
+      - name: Copia a imagem
+        copy:
+            src: '{{ orig }}/rackserver.png'
+            dest: '{{ dest }}'
+            owner: root
+            group: root
+            mode: 0644
+      - name: Inicia o Nginx
+        service:
+            name: nginx
+            state: started
+
+  # vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
+

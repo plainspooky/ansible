@@ -11,6 +11,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		vb.customize ["modifyvm", :id, "--cpus", "1"]
 	end
 
+	config.vm.network "forwarded_port", guest: 80, host: 8000
+
 	config.vm.provision "shell", path:"./scripts/software_update"
 	config.vm.provision "shell", path:"./scripts/virtualenv_install"
 	config.vm.provision "shell", path:"./scripts/ansible_setup", privileged:false

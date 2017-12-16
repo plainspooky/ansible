@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Página inicial de '{{ ansible_fqdn }}'</title>
+    <link rel='stylesheet' type='text/css'
+      href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">      
+  </head>
+  <style>
+    BODY { font-family:sans-serif; font-size:12pt; }
+    .rackserver { width:192px; }
+    .well { background-color: #75858a; }
+  </style>
+  <body>
+    <div class="navbar navbar-inverse navbar-static-top">
+      <div class="container" role="navigation">
+        <div class="navbar-header">
+		<a href='#' class="navbar-brand">{{ ansible_default_ipv4['address'] }}</a>
+        </div>
+      </div>
+    </div>  
+    <div class="container well text-center">
+      <img src="rackserver.png" class="rackserver"/>
+      <h1>{{ ansible_hostname }}</h1>
+      <p>{{ ansible_fqdn }} | {{ ansible_os_family }}</p>
+    </div>
+    <div class="container">
+      <p>Este arquivo foi gerado automaticamente durante a instalação e
+      configuração do servidor, se você não sabe como veio parar aqui
+      verifique a URL digitada e tente novamente.</p>
+      <hr>
+      <footer>
+        <p>&copy;2017, Giovanni Nunes | Para maiores informações ou contato,
+        acesse meu blog em <a href='http://giovannireisnunes.wordpress.com'
+        target='_BLANK'>giovanninunes.wordpress.com</a>.</p>
+      </footer>
+    </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>    
+  </body>
+</html>
