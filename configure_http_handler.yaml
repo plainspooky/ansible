@@ -1,0 +1,44 @@
+#
+# Configuração do Nginx nos nós (usando handlers)
+# 
+- hosts: localhost
+  connection: local
+  become: yes
+  become_user: root
+  vars:
+      - orig: /vagrant
+      - dest: /var/www/html 
+  tasks:
+      - name: Instala o Nginx
+        apt:
+            name: nginx
+            state: latest
+            update_cache: true
+        notify:
+            - Reinicia o Nginx
+      - name: Monta a página principal
+        template:
+            src: '{{ orig }}/index.html'
+            dest: '{{ dest }}/index.html'
+            owner: root
+            group: root
+            mode: 0644
+        notify:
+            - Reinicia o Nginx
+      - name: Copia a imagem
+        copy:
+            src: '{{ orig }}/rackserver.png'
+            dest: '{{ dest }}'
+            owner: root
+            group: root
+            mode: 0644
+        notify:
+            - Reinicia o Nginx
+  handlers:
+      - name: Reinicia o Nginx
+        service:
+            name: nginx
+            state: restarted
+
+# vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
+
