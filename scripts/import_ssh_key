@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+key='/vagrant/ubuntu-xenial.pub'
+
+fragment=$( head --bytes=64 ${key} )
+
+let match=$( grep --count "${fragment}" ${key} )
+
+if (( match>0 )); then 
+    cat ${key} >> ~/.ssh/authorized_keys
+fi
+

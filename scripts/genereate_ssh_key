@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [ ! -f ~/.ssh/id_rsa ]; then
+    echo -e "\n" |\
+    ssh-keygen -t rsa -N ""
+fi
+
+cp ~/.ssh/id_rsa.pub /vagrant/$( hostname ).pub
+
